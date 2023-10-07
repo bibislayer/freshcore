@@ -25,6 +25,7 @@ function AddEdit(props) {
             .required('l\'email est requis'),
         password: Yup.string()
             .transform(x => x === '' ? undefined : x)
+            .concat(isAddMode ? Yup.string().required('Le mot de passe est requis') : null)
             .min(6, 'Le mot de passe doit contenir 6 caractères minimum')
     });
     const formOptions = { resolver: yupResolver(validationSchema) };
